@@ -1,0 +1,129 @@
+:root {
+    --green: #7b9e8a;
+    --beige: #ffebd0;
+    --grey: #e0d6d6;
+    --black: #350635;
+    --purple: #68446c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--beige);
+}
+
+a {
+    text-decoration: none;
+    color: var(--beige);
+}
+
+#header, #footer {
+    text-align: center;
+    background-image: url("img/5148.jpg");
+    background-size: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+#header {
+    padding: 40px;
+    border-bottom: 5px solid var(--black);
+}
+
+#footer {
+    padding: 25px;
+    border-top: 5px solid var(--black);
+}
+
+.container {
+    padding: 10px;
+    background: var(--green);
+    border: 5px solid var(--black);
+    width: 30%;
+}
+
+#footer>.container {
+    width: 40%;
+}
+
+#content {
+    padding: 25px 50px 50px;
+    background: var(--grey);
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.card {
+    padding: 25px;
+    width: 200px;
+    height: 300px;
+    border: 5px solid var(--black);
+    border-radius: 5px;
+    background: var(--green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 10px 3px 0 0 white, 4px 2px 0 0 white, 15px 7px 0 0 black,
+                0px 7px 0 0 black, 15px 3px 0 0 black, 20px 8px 10px 5px gray;
+}
+
+.card:hover, button:hover {
+    transform: scale(1.05);
+}
+
+.title {
+    font-size: 22px;
+    flex-grow: 1;
+}
+
+.page-number {
+    font-size: 12px;
+}
+
+.isRead {
+    outline: 2px dotted var(--purple);
+    font-size: 16px;
+    transform: rotate(15deg);
+    margin-bottom: 20px;
+    align-self: flex-end;
+    background: var(--purple);
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.isRead:hover {
+    background: var(--beige);
+    color: var(--purple);
+    outline-color: var(--beige);
+}
+
+#buttons {
+    padding: 25px 10px 0;
+    background: var(--grey);
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 20%;
+    height: 40px;
+    color: var(--beige);
+    background: var(--purple);
+    border: 5px solid var(--black);
+}
