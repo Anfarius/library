@@ -66,7 +66,7 @@ a {
 }
 
 .card {
-    padding: 25px;
+    padding: 25px 25px 10px;
     width: 200px;
     height: 300px;
     border: 5px solid var(--black);
@@ -77,10 +77,29 @@ a {
     align-items: center;
     box-shadow: 10px 3px 0 0 white, 4px 2px 0 0 white, 15px 7px 0 0 black,
                 0px 7px 0 0 black, 15px 3px 0 0 black, 20px 8px 10px 5px gray;
+    text-align: center;
 }
 
 .card:hover, button:hover {
     transform: scale(1.05);
+}
+
+.delete {
+    visibility: hidden;
+    height: auto;
+    margin-top: 5px;
+    width: 60px;
+    border: none;
+    align-self: center;
+    background: var(--grey);
+    color: var(--purple);
+    border-radius: 25px;
+    padding: 0;
+    text-align: center;
+}
+
+.card:hover>button {
+    visibility: visible;
 }
 
 .title {
@@ -113,11 +132,20 @@ a {
     outline-color: var(--beige);
 }
 
-#buttons {
+#buttons, #form {
     padding: 25px 10px 0;
     background: var(--grey);
     display: flex;
     justify-content: center;
+}
+
+#form>.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container>button {
+    align-self: center;
 }
 
 button {

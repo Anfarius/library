@@ -9,6 +9,13 @@ function Book(title, author, pages, isRead) {
     this.author = author;
     this.pages = `${pages} pages`;
     this.isRead = isRead;
+    this.changeIsRead = function () {
+        if (this.isRead) {
+            this.isRead = false;
+        } else {
+            this.isRead = true;
+        }
+    }
 }
 
 // function which adds books created using the object constructor to the array
@@ -48,32 +55,83 @@ function displayBooks() {
             isRead.textContent = "Not read";
         }
         isRead.addEventListener("click", changeIsRead);
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "delete?";
+        deleteBtn.classList.add("delete");
+        deleteBtn.addEventListener("click", deleteBook);
 
         card.appendChild(title);
         card.appendChild(isRead);
         card.appendChild(author);
         card.appendChild(pages);
+        card.appendChild(deleteBtn);
 
         content.appendChild(card);
     });
+}
+
+// function which deletes the book at index and refreshes the library display
+
+function deleteBook() {
+    bookIndex = this.parentElement.id;
+    myLibrary.splice(bookIndex, 1);
+    displayBooks();
 }
 
 // function handling the changing of the read status
 
 function changeIsRead() {
     const currentBook = myLibrary[this.parentElement.id];
-    if (currentBook.isRead) {
-        currentBook.isRead = false;
-    } else {
-        currentBook.isRead = true;
-    }
+    currentBook.changeIsRead();
     displayBooks();
 }
 
-// test
+// event listener controlling the log a book button showing and hiding the form
 
-for (let i = 0; i < 3; i++) {
-    addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", false);
+const logBtn = document.querySelector("#log");
+logBtn.addEventListener("click", showLogForm);
+
+function showLogForm() {
+    const logForm = document.querySelector("#form");
+
+    if (logForm.style.display === "flex") {
+        logForm.style.display = "none";
+    } else {
+        logForm.style.display = "flex";
+    }
 }
+
+// event listener controlling the submit button to read the input and add a
+// book, then display it
+
+const submitBtn = document.querySelector("#submit");
+submitBtn.addEventListener("click", submitBook)
+
+function submitBook() {
+    const inputTitle = document.getElementById("input-title");
+    const inputAuthor = document.getElementById("input-author");
+    const inputPages = document.getElementById("input-pages");
+    const inputRead = document.getElementById("input-read");
+    const title = inputTitle.value;
+    const author = inputAuthor.value;
+    const pages = inputPages.value;
+    const isRead = inputRead.checked;
+    addBookToLibrary(title, author, pages, isRead);
+    displayBooks();
+    showLogForm();
+    inputTitle.value = "";
+    inputAuthor.value = "";
+    inputPages.value = "";
+    inputRead.checked = false;
+}
+
+// initial library
+
+
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", "295", true);
+addBookToLibrary("Hyperion", "Dan Simmons", "482", true);
+addBookToLibrary("Warbreaker", "Brandon Sanderson", "592", true);
+addBookToLibrary("Dune", "Frank Herbert", "412", true);
+addBookToLibrary("Leviathan Wakes", "James S. A. Corey", "577", false);
+addBookToLibrary("Foundation", "Isaac Asimov", "255", false);
 displayBooks();
